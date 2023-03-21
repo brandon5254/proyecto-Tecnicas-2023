@@ -2,13 +2,14 @@ package co.edu.usbcali.aerolinea.controllers;
 
 
 
+import co.edu.usbcali.aerolinea.dtos.MensajeDTO;
+import co.edu.usbcali.aerolinea.dtos.RolUsuarioDTO;
 import co.edu.usbcali.aerolinea.model.RolUsuario;
 import co.edu.usbcali.aerolinea.services.RolUsuarioService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
@@ -33,4 +34,20 @@ import java.util.List;
         }
 
         ///aqui va el postmapping
+
+
+
+        @PostMapping(path = "/guardarNuevoRolUsuario",
+          consumes= MediaType.APPLICATION_JSON_VALUE,
+          produces= MediaType.APPLICATION_JSON_VALUE)
+        public  ResponseEntity guardarNuevoRolUsuario(@RequestBody RolUsuarioDTO rolUsuarioDTO){
+            try{
+                return new ResponseEntity(rolUsuarioService.guardarNuevoRollUsuario(rolUsuarioDTO),HttpStatus.OK);
+
+
+            }catch (Exception e){
+
+                return  new ResponseEntity(MensajeDTO.builder().mensaje(e.getMessage()).build(),HttpStatus.BAD_REQUEST);
+            }
+        }
 }
