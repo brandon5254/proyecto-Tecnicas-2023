@@ -2,7 +2,7 @@ package co.edu.usbcali.aerolinea.controllers;
 
 
 
-import co.edu.usbcali.aerolinea.dtos.MensajeDTO;
+import co.edu.usbcali.aerolinea.dtos.MensajeVueloDTO;
 import co.edu.usbcali.aerolinea.dtos.RolUsuarioDTO;
 import co.edu.usbcali.aerolinea.model.RolUsuario;
 import co.edu.usbcali.aerolinea.services.RolUsuarioService;
@@ -47,7 +47,7 @@ import java.util.List;
 
             }catch (Exception e){
 
-                return  new ResponseEntity(MensajeDTO.builder().mensaje(e.getMessage()).build(),HttpStatus.BAD_REQUEST);
+                return  new ResponseEntity(MensajeVueloDTO.builder().mensaje(e.getMessage()).build(),HttpStatus.BAD_REQUEST);
             }
         }
 }

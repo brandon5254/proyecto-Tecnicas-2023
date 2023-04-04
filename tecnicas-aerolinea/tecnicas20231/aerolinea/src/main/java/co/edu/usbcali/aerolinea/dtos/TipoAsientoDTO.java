@@ -9,9 +9,8 @@ import lombok.ToString;
 @AllArgsConstructor
 @Builder
 @ToString
-public class RolUsuarioDTO {
-    private Integer rousId;
+public class TipoAsientoDTO {
+    private Integer idTipoAsiento;
     private String descripcion;
-    private String  estado;
-
+    private String estado;
 }

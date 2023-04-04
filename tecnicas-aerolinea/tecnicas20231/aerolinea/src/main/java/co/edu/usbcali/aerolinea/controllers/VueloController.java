@@ -1,6 +1,6 @@
 package co.edu.usbcali.aerolinea.controllers;
 
-import co.edu.usbcali.aerolinea.dtos.MensajeDTO;
+import co.edu.usbcali.aerolinea.dtos.MensajeVueloDTO;
 import co.edu.usbcali.aerolinea.dtos.VueloDTO;
 import co.edu.usbcali.aerolinea.services.VueloService;
 import org.springframework.http.HttpStatus;
@@ -8,8 +8,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -39,7 +37,7 @@ public class VueloController {
         try {
             return new ResponseEntity(vueloService.guardarVuelo(vueloDTO), HttpStatus.OK);
         }catch (Exception e) {
-            return new ResponseEntity(MensajeDTO.builder().mensaje(e.getMessage()).build(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(MensajeVueloDTO.builder().mensaje(e.getMessage()).build(), HttpStatus.BAD_REQUEST);
         }
 
     }

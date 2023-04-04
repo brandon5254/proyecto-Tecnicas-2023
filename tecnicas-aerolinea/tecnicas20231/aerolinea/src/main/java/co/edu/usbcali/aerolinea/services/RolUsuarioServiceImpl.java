@@ -33,8 +33,8 @@ public class RolUsuarioServiceImpl implements RolUsuarioService {
         if (rolUsuarioDTO == null) {
             throw new Exception("El rol usuario puede ser nulo");
         }
-        if (rolUsuarioDTO.getId() == null ||
-                rolUsuarioDTO.getId().equals(0)) {
+        if (rolUsuarioDTO.getRousId() == null ||
+                rolUsuarioDTO.getRousId().equals(0)) {
             throw new Exception("Id no puede ser nulo o 0");
         }
         if (rolUsuarioDTO.getDescripcion() == null ||

@@ -11,14 +11,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "rol_usuario")
-public class RolUsuario {
+@Table(name = "tipo_asiento")
+public class TipoAsiento {
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "rous_id", nullable = false)
-    private Integer rousId;
-    @Column(nullable = false, length = 30)
+    @Column(name = "tias_id", nullable = false, unique = true)
+    private Integer idTipoAsiento;
+    @Column(name = "descripcion", nullable = false, length = 30)
     private String descripcion;
-    @Column(nullable = false, length = 1)
+    @Column(name = "estado", nullable = false, length = 1)
     private String estado;
+
 }
+

@@ -7,16 +7,16 @@ import co.edu.usbcali.aerolinea.model.RolUsuario;
 import java.util.List;
 import java.util.stream.Collectors;
 public class RolUsuarioMapper {
-    public static RolUsuarioDTO modelDto(RolUsuario rolUsuario) {
+       public static RolUsuarioDTO modelDto(RolUsuario rolUsuario) {
         return RolUsuarioDTO.builder()
-                .id(rolUsuario.getId())
+                .rousId(rolUsuario.getRousId())
                 .descripcion(rolUsuario.getDescripcion())
                 .estado(rolUsuario.getEstado())
                 .build();
     }
     public  static RolUsuario dtoToModel(RolUsuarioDTO rolUsuarioDTO){
         return RolUsuario.builder()
-                .id(rolUsuarioDTO.getId())
+                .rousId(rolUsuarioDTO.getRousId())
                 .descripcion(rolUsuarioDTO.getDescripcion())
                 .estado(rolUsuarioDTO.getEstado())
                 .build();
@@ -31,5 +31,5 @@ public class RolUsuarioMapper {
 
     }
 
-    }
+}
 

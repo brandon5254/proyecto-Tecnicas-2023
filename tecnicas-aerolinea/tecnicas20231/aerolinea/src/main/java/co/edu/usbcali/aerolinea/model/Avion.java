@@ -6,19 +6,26 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "rol_usuario")
-public class RolUsuario {
+@Table(name = "avion")
+public class Avion implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "rous_id", nullable = false)
-    private Integer rousId;
-    @Column(nullable = false, length = 30)
-    private String descripcion;
+    @Column(name = "avio_id", nullable = false)
+    private Integer idAvion;
+
+    @Column(length = 30)
+    private String modelo;
+
     @Column(nullable = false, length = 1)
     private String estado;
+
 }

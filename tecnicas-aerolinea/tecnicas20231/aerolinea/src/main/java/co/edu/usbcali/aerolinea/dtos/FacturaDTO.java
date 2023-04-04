@@ -5,13 +5,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
 
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @Builder
 @ToString
-public class RolUsuarioDTO {
-    private Integer rousId;
-    private String descripcion;
-    private String  estado;
-
+public class FacturaDTO {
+    private Integer idFactura;
+    private Integer idUsuario;
+    private Date fecha;
+    private String estado;
 }
