@@ -19,10 +19,10 @@ public class Trayecto {
     @Column(name = "tray_id", nullable = false, unique = true)
     private Integer idTrayecto;
     @ManyToOne
-    @JoinColumn(name = "aero_id_desti", referencedColumnName = "aero_id_desti")
+    @JoinColumn(name = "aero_id_desti", referencedColumnName = "aero_id")
     private Aeropuerto idAeropuertoDestino;
     @ManyToOne
-    @JoinColumn(name = "aero_id_origen", referencedColumnName = "aero_id_origen")
+    @JoinColumn(name = "aero_id_origen", referencedColumnName = "aero_id")
     private Aeropuerto idAeropuertoOrigen;
     @ManyToOne
     @JoinColumn(name = "vuel_id", referencedColumnName = "vuel_id")
