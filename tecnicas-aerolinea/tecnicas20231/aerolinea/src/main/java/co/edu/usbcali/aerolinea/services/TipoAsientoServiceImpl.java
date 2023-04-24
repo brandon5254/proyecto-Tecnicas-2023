@@ -2,15 +2,17 @@ package co.edu.usbcali.aerolinea.services;
 
 
 
-        import co.edu.usbcali.aerolinea.model.TipoAsiento;
-        import co.edu.usbcali.aerolinea.dtos.TipoAsientoDTO;
-        import co.edu.usbcali.aerolinea.mapper.TipoAsientoMapper;
-        import co.edu.usbcali.aerolinea.repository.TipoAsientoRepository;
-        import lombok.extern.slf4j.Slf4j;
-        import org.modelmapper.ModelMapper;
-        import org.springframework.stereotype.Service;
+import co.edu.usbcali.aerolinea.model.TipoAsiento;
+import co.edu.usbcali.aerolinea.dtos.TipoAsientoDTO;
+import co.edu.usbcali.aerolinea.mapper.TipoAsientoMapper;
+import co.edu.usbcali.aerolinea.repository.TipoAsientoRepository;
+import co.edu.usbcali.aerolinea.services.TipoAsientoService;
 
-        import java.util.List;
+import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @Slf4j

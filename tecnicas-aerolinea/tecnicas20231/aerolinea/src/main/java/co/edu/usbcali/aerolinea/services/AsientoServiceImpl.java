@@ -5,6 +5,18 @@ import co.edu.usbcali.aerolinea.dtos.AsientoDTO;
 import co.edu.usbcali.aerolinea.mapper.AsientoMapper;
 import co.edu.usbcali.aerolinea.repository.AsientoRepository;
 
+
+
+
+import co.edu.usbcali.aerolinea.model.Asiento;
+import co.edu.usbcali.aerolinea.model.Reserva;
+import co.edu.usbcali.aerolinea.model.TipoAsiento;
+
+
+import co.edu.usbcali.aerolinea.repository.ReservaRepository;
+import co.edu.usbcali.aerolinea.repository.TipoAsientoRepository;
+import co.edu.usbcali.aerolinea.services.AsientoService;
+
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -16,9 +28,14 @@ import java.util.List;
 public class AsientoServiceImpl implements AsientoService {
     private final AsientoRepository asientoRepository;
     private final ModelMapper modelMapper;
+    private final TipoAsientoRepository tipoAsientoRepository;
 
-    public AsientoServiceImpl(AsientoRepository asientoRepository, ModelMapper modelMapper) {
+    private final ReservaRepository  reservaRepository;
+
+    public AsientoServiceImpl(AsientoRepository asientoRepository, TipoAsientoRepository tipoAsientoRepository, ReservaRepository reservaRepository, ModelMapper modelMapper) {
         this.asientoRepository = asientoRepository;
+        this.tipoAsientoRepository = tipoAsientoRepository;
+        this.reservaRepository = reservaRepository;
         this.modelMapper = modelMapper;
     }
     @Override

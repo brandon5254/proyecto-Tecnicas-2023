@@ -10,7 +10,7 @@ public class ReservaMapper {
     public static ReservaDTO modelToDTO(Reserva reserva) {
         return ReservaDTO.builder()
                 .idReserva(reserva.getIdReserva())
-                .idVuelo(reserva.getIdVuelo() != null ? reserva.getIdVuelo().getVuelId() : null)
+                .idVuelo(reserva.getIdVuelo() != null ? reserva.getIdVuelo().getIdVuelo() : null)
                 .precioTotal(reserva.getPrecioTotal())
                 .estadoPago(reserva.getEstadoPago())
                 .estado(reserva.getEstado())

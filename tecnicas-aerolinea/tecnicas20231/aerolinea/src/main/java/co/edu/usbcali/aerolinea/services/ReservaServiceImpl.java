@@ -3,8 +3,13 @@ package co.edu.usbcali.aerolinea.services;
 import co.edu.usbcali.aerolinea.model.Reserva;
 import co.edu.usbcali.aerolinea.dtos.ReservaDTO;
 import co.edu.usbcali.aerolinea.mapper.ReservaMapper;
+import co.edu.usbcali.aerolinea.model.Vuelo;
 import co.edu.usbcali.aerolinea.repository.ReservaRepository;
 import co.edu.usbcali.aerolinea.services.ReservaService;
+
+import co.edu.usbcali.aerolinea.repository.AsientoRepository;
+import co.edu.usbcali.aerolinea.repository.TipoAsientoRepository;
+import co.edu.usbcali.aerolinea.repository.VueloRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -49,6 +54,10 @@ public class ReservaServiceImpl implements ReservaService {
             throw new Exception("Ya existe el id de la reserva!");
         }
         Reserva reserva = ReservaMapper.dtoToModel(reservaDTO);
+
+
+
+        Reserva saved = reservaRepository.save(reserva);
         return ReservaMapper.modelToDTO(reservaRepository.save(reserva));
     }
 }

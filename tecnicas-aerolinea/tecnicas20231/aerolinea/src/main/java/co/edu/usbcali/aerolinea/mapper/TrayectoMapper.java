@@ -12,7 +12,7 @@ public class TrayectoMapper {
                 .idTrayecto(trayecto.getIdTrayecto())
                 .idAeropuertoOrigen(Math.toIntExact(trayecto.getIdAeropuertoOrigen() != null ? trayecto.getIdAeropuertoOrigen().getAero_id() : null))
                 .idAeropuertoDestino(Math.toIntExact(trayecto.getIdAeropuertoDestino() != null ? trayecto.getIdAeropuertoDestino().getAero_id() : null))
-                .idVuelo(trayecto.getIdVuelo().getVuelId())
+                .idVuelo(trayecto.getIdVuelo().getIdVuelo())
                 .estado(trayecto.getEstado())
                 .build();
     }
