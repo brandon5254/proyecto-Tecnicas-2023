@@ -28,4 +28,7 @@ public class Asiento {
     private long precio;
     @Column(name = "estado", nullable = false, length = 1)
     private String estado;
+
+    public Asiento(Integer asientoId, String s) {
+    }
 }

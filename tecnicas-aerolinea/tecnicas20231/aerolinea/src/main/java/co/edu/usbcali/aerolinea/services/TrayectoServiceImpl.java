@@ -15,9 +15,12 @@ import java.util.List;
 public class TrayectoServiceImpl implements TrayectoService {
     private final TrayectoRepository trayectoRepository;
     private final ModelMapper modelMapper;
-    public TrayectoServiceImpl(TrayectoRepository trayectoRepository, ModelMapper modelMapper) {
+    public TrayectoServiceImpl(TrayectoRepository trayectoRepository) {
         this.trayectoRepository = trayectoRepository;
-        this.modelMapper = modelMapper;
+        modelMapper = new ModelMapper();
+        // modelMapper = ModelMapper();
+
+
     }
     @Override
     public TrayectoDTO obtenerTrayecto(Integer id) throws Exception {
@@ -26,6 +29,13 @@ public class TrayectoServiceImpl implements TrayectoService {
         }
         return TrayectoMapper.modelToDTO(trayectoRepository.findById(id).get());
     }
+
+    @Override
+    public List<TrayectoDTO> obtenerTrayectos() {
+        return TrayectoMapper.modelToDTOList(trayectoRepository.findAll());
+    }
+
+
     @Override
     public TrayectoDTO agregarTrayecto(TrayectoDTO trayectoDTO) throws Exception {
         if (trayectoDTO == null) {
@@ -40,9 +50,6 @@ public class TrayectoServiceImpl implements TrayectoService {
         Trayecto trayecto = TrayectoMapper.dtoToModel(trayectoDTO);
         return TrayectoMapper.modelToDTO(trayectoRepository.save(trayecto));
     }
-    @Override
-    public List<TrayectoDTO> obtenerTrayectos() {
-        return TrayectoMapper.modelToDTOList(trayectoRepository.findAll());
-    }
 }
+
 

@@ -27,6 +27,16 @@ public class TipoAsientoServiceImpl implements TipoAsientoService {
     public List<TipoAsientoDTO> obtenerTipoAsientos() {
         return TipoAsientoMapper.modelToDTOList(tipoAsientoService.findAll());
     }
+
+
+
+    @Override
+    public TipoAsientoDTO obtenerTipoAsiento(Integer id) throws Exception {
+        if (tipoAsientoService.findById(id).isEmpty()) {
+            throw new Exception("El id " + id + " no corresponde a ningun tipo de asiento!");
+        }
+        return TipoAsientoMapper.modelToDTO(tipoAsientoService.findById(id).get());
+    }
     @Override
     public TipoAsientoDTO agregarTipoAsiento(TipoAsientoDTO tipoAsientoDTO) throws Exception {
         if (tipoAsientoDTO == null) {
@@ -44,11 +54,5 @@ public class TipoAsientoServiceImpl implements TipoAsientoService {
         TipoAsiento tipoAsiento = TipoAsientoMapper.dtoToModel(tipoAsientoDTO);
         return TipoAsientoMapper.modelToDTO(tipoAsientoService.save(tipoAsiento));
     }
-    @Override
-    public TipoAsientoDTO obtenerTipoAsiento(Integer id) throws Exception {
-        if (tipoAsientoService.findById(id).isEmpty()) {
-            throw new Exception("El id " + id + " no corresponde a ningun tipo de asiento!");
-        }
-        return TipoAsientoMapper.modelToDTO(tipoAsientoService.findById(id).get());
-    }
+
 }

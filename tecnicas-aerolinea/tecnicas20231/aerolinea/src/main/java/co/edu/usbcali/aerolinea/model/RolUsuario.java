@@ -21,4 +21,7 @@ public class RolUsuario {
     private String descripcion;
     @Column(nullable = false, length = 1)
     private String estado;
+
+    public RolUsuario(String admin, String admin1) {
+    }
 }

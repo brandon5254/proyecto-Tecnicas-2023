@@ -25,6 +25,16 @@ public class TipoAsientoController {
     public ResponseEntity<List<TipoAsientoDTO>> obtenerTipoAsientos() {
         return new ResponseEntity(tipoAsientoService.obtenerTipoAsientos(), HttpStatus.OK);
     }
+
+    @GetMapping("/obtenerTipoAsiento")
+    public ResponseEntity<TipoAsientoDTO> obtenerTipoAsiento(@PathVariable("idTipoa") Integer idTipoa) {
+        try {
+            return new ResponseEntity(tipoAsientoService.obtenerTipoAsiento(idTipoa), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity(MensajeVueloDTO.builder().mensaje(e.getMessage()).build(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @PostMapping(path = "/agregarTipoAsiento",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -36,13 +46,5 @@ public class TipoAsientoController {
         }
     }
 
-    @GetMapping("/obtenerTipoAsiento")
-    public ResponseEntity<TipoAsientoDTO> obtenerTipoAsiento(@PathVariable("idTipoa") Integer idTipoa) {
-        try {
-            return new ResponseEntity(tipoAsientoService.obtenerTipoAsiento(idTipoa), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity(MensajeVueloDTO.builder().mensaje(e.getMessage()).build(), HttpStatus.BAD_REQUEST);
-        }
-    }
 
 }

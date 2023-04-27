@@ -15,9 +15,20 @@ import java.util.List;
 public class AeropuertoServiceImpl implements AeropuertoService {
     private final AeropuertoRepository aeropuertoRepository;
     private final ModelMapper modelMapper;
-    public AeropuertoServiceImpl(AeropuertoRepository aeropuertoRepository, ModelMapper modelMapper) {
+    public AeropuertoServiceImpl(AeropuertoRepository aeropuertoRepository) {
         this.aeropuertoRepository = aeropuertoRepository;
-        this.modelMapper = modelMapper;
+        this.modelMapper = null;
+    }
+    @Override
+    public AeropuertoDTO obtenerAeropuerto(Integer id) throws Exception {
+        if (aeropuertoRepository.findById(Long.valueOf(id)).isEmpty()) {
+            throw new Exception("El id " + id + " no corresponde a ningun aeropuerto!");
+        }
+        return AeropuertoMapper.modelToDto(aeropuertoRepository.findById(Long.valueOf(id)).get());
+    }
+    @Override
+    public List<AeropuertoDTO> obtenerAeropuertos() {
+        return AeropuertoMapper.modelToDtoList(aeropuertoRepository.findAll());
     }
     @Override
     public AeropuertoDTO agregarAeropuerto(AeropuertoDTO aeropuertoDTO) throws Exception {
@@ -42,15 +53,5 @@ public class AeropuertoServiceImpl implements AeropuertoService {
         Aeropuerto aeropuerto = AeropuertoMapper.dtoToModel(aeropuertoDTO);
         return AeropuertoMapper.modelToDto(aeropuertoRepository.save(aeropuerto));
     }
-    @Override
-    public AeropuertoDTO obtenerAeropuerto(Integer id) throws Exception {
-        if (aeropuertoRepository.findById(Long.valueOf(id)).isEmpty()) {
-            throw new Exception("El id " + id + " no corresponde a ningun aeropuerto!");
-        }
-        return AeropuertoMapper.modelToDto(aeropuertoRepository.findById(Long.valueOf(id)).get());
-    }
-    @Override
-    public List<AeropuertoDTO> obtenerAeropuertos() {
-        return AeropuertoMapper.modelToDtoList(aeropuertoRepository.findAll());
-    }
+
 }

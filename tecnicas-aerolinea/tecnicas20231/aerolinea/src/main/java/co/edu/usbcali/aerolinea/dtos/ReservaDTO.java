@@ -15,4 +15,7 @@ public class ReservaDTO {
     private long precioTotal;
     private String estadoPago;
     private String estado;
+
+    public ReservaDTO(int idReserva, String s) {
+    }
 }

@@ -18,4 +18,7 @@ public class AsientoDTO {
     private long precio;
     private String estado;
 
+    public AsientoDTO() {
+
+    }
 }

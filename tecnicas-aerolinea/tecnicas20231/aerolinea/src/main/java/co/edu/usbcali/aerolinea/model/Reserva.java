@@ -27,4 +27,7 @@ public class Reserva {
     private String estadoPago;
     @Column(name = "estado", nullable = false, length = 1)
     private String estado;
+
+    public Reserva(int i, String s) {
+    }
 }
