@@ -23,7 +23,7 @@ public class AeropuertoController {
     public AeropuertoController(AeropuertoService aeropuertoService) {
         this.aeropuertoService = aeropuertoService;
     }
-    @GetMapping("/obtenerAeropuerto")
+    @GetMapping("/obtenerAeropuerto/{idAeropuerto}")
     public ResponseEntity<AeropuertoDTO> obtenerAeropuerto(@PathVariable("idAeropuerto") Integer idAeropuerto) {
         try {
             return new ResponseEntity(aeropuertoService.obtenerAeropuerto(idAeropuerto), HttpStatus.OK);

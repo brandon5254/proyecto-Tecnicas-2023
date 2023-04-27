@@ -33,6 +33,17 @@ import java.util.List;
                     , HttpStatus.OK);
         }
 
+
+
+
+        @GetMapping("/obtenerRolUsuario/{idRolusuario}")
+        public ResponseEntity<RolUsuarioDTO> obtenerRolUsuario(@PathVariable("idRolusuario") Integer idRolusuario) {
+            try {
+                return new ResponseEntity(rolUsuarioService.obtenerRolUsuario(idRolusuario), HttpStatus.OK);
+            } catch (Exception e) {
+                return new ResponseEntity(MensajeVueloDTO.builder().mensaje(e.getMessage()).build(), HttpStatus.BAD_REQUEST);
+            }
+        }
         ///aqui va el postmapping
 
 

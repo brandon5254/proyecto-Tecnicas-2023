@@ -68,7 +68,7 @@ public class UsuarioServiceImplTests {
 
     @Test(expected = Exception.class)
     public void testObtenerUsuarioNoExiste() throws Exception {
-        when(usuarioRepository.findById(1)).thenReturn(Optional.empty());
+        when(usuarioRepository.findById(10)).thenReturn(Optional.empty());
 
         usuarioService.obtenerUsuario(1);
     }

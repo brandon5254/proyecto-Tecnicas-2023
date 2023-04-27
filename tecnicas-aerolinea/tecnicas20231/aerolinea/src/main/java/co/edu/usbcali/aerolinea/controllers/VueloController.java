@@ -20,7 +20,7 @@ public class VueloController {
         public VueloController(VueloService vueloService) {
             this.vueloService = vueloService;
         }
-        @GetMapping("/obtenerVuelo/idVuelo")
+        @GetMapping("/obtenerVuelo/{idVuelo}")
         public ResponseEntity<VueloDTO> obtenerVuelo(@PathVariable("idVuelo") Integer idVuelo){
             try {
                 return new ResponseEntity(vueloService.obtenerVuelo(idVuelo), HttpStatus.OK);

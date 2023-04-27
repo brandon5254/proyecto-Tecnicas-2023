@@ -40,9 +40,7 @@ public class VueloServiceImpl implements VueloService {
         if (vueloDTO.getPrecio() < 0) {
             throw new Exception("El precio del vuelo no puede ser negativo!");
         }
-        /*if (vueloDTO.getIdVuelo() == null) {
-            throw new Exception("El id del vuelo es invalido!");
-        }*/
+
         if (vueloDTO.getFechaHoraSalida() == null) {
             throw new Exception("La hora de salida es invalida!");
         }

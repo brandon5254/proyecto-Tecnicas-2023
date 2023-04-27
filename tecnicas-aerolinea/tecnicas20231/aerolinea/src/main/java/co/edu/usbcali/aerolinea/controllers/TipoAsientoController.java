@@ -26,7 +26,7 @@ public class TipoAsientoController {
         return new ResponseEntity(tipoAsientoService.obtenerTipoAsientos(), HttpStatus.OK);
     }
 
-    @GetMapping("/obtenerTipoAsiento")
+    @GetMapping("/obtenerTipoAsiento/{idTipoa}")
     public ResponseEntity<TipoAsientoDTO> obtenerTipoAsiento(@PathVariable("idTipoa") Integer idTipoa) {
         try {
             return new ResponseEntity(tipoAsientoService.obtenerTipoAsiento(idTipoa), HttpStatus.OK);

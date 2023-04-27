@@ -23,7 +23,7 @@ public class AsientoController {
     public ResponseEntity<List<AsientoDTO>> obtenerAsientos() {
         return new ResponseEntity(asientoService.obtenerAsientos(), HttpStatus.OK);
     }
-    @GetMapping("/obtenerAsiento")
+    @GetMapping("/obtenerAsiento/{idAsiento}")
     public ResponseEntity<AsientoDTO> obtenerAsiento(@PathVariable("idAsiento") Integer idAsiento) {
         try {
             return new ResponseEntity(asientoService.obtenerAsiento(idAsiento), HttpStatus.OK);

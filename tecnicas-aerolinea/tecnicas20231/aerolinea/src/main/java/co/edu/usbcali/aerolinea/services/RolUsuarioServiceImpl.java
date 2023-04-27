@@ -1,11 +1,16 @@
 package co.edu.usbcali.aerolinea.services;
 
+import co.edu.usbcali.aerolinea.dtos.MensajeVueloDTO;
 import co.edu.usbcali.aerolinea.dtos.RolUsuarioDTO;
 import co.edu.usbcali.aerolinea.mapper.RolUsuarioMapper;
 import co.edu.usbcali.aerolinea.model.RolUsuario;
 import co.edu.usbcali.aerolinea.repository.RolUsuarioRepository;
 import co.edu.usbcali.aerolinea.services.RolUsuarioService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -25,6 +30,15 @@ public class RolUsuarioServiceImpl implements RolUsuarioService {
         rolUsuarioRepository.findAll();
         return RolUsuarioMapper.modelToDtoList(rolUsuarios);
 
+    }
+
+
+    @Override
+    public RolUsuarioDTO obtenerRolUsuario(Integer id) throws Exception {
+        if (rolUsuarioRepository.findById(id).isEmpty()){
+            throw new Exception("El id"+ id + "no corresponde a ningun usuario!");
+        }
+        return RolUsuarioMapper.modelDto(rolUsuarioRepository.findById(id).get());
     }
 
     @Override
@@ -49,4 +63,6 @@ public class RolUsuarioServiceImpl implements RolUsuarioService {
         RolUsuario rolUsuario = RolUsuarioMapper.dtoToModel((rolUsuarioDTO));
         return RolUsuarioMapper.modelDto(rolUsuarioRepository.save(rolUsuario));
     }
+
+
 }

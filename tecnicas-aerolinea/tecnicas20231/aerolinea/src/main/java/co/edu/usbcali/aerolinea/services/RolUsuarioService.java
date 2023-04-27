@@ -9,4 +9,6 @@ public interface RolUsuarioService {
     List<RolUsuarioDTO> buscartodos();
 
     RolUsuarioDTO guardarNuevoRollUsuario(RolUsuarioDTO rolUsuarioDTO) throws Exception;
+
+    RolUsuarioDTO obtenerRolUsuario(Integer id) throws Exception;
 }
