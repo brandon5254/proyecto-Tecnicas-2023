@@ -17,19 +17,13 @@ import java.util.Date;
 @Builder
 @Entity
 @Table(name = "vuelo")
+
 public class Vuelo {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "vuel_id", nullable = false, unique = true)
     private Integer idVuelo;
-    /*@ManyToOne
-    @JoinColumn(name = "origen", referencedColumnName = "aero_id")
-    private Aeropuerto idAeropuertoOrigen;
-    @ManyToOne
-    @JoinColumn(name = "destino", referencedColumnName = "aero_id")
-    private Aeropuerto idAeropuertoDestino;*/
-
     @OneToOne
     @JoinColumn(name = "avio_id", referencedColumnName = "avio_id")
     private Avion avion;
@@ -39,7 +33,7 @@ public class Vuelo {
     private long precio;
     @Column(name = "hora_salida", nullable = false)
     @CreationTimestamp
-    private java.util.Date fechaHoraSalida;
+    private Date fechaHoraSalida;
     @Column(name = "hora_llegada", nullable = false)
     @CreationTimestamp
     private Date fechaHoraLlegada;

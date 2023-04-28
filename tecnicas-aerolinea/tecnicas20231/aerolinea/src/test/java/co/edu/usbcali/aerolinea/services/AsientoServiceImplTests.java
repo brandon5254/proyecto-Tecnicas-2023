@@ -1,8 +1,6 @@
 package co.edu.usbcali.aerolinea.services;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -59,8 +57,13 @@ public class AsientoServiceImplTests {
         assertNotNull(asiento);
     }
 
-    @Test(expected = Exception.class)
-    public void testObtenerAsientoNoExistente() throws Exception {
-        asientoServiceImpl.obtenerAsiento(2);
-}
+    @Test
+    public void testObtenerAsientoNoExistente() {
+        Exception exception = assertThrows(Exception.class, () ->
+                asientoServiceImpl.obtenerAsiento(2));
+
+        String mensaje = "El id 2 no corresponde a ningun asiento!";
+
+        assertEquals(mensaje, exception.getMessage());
+    }
 }

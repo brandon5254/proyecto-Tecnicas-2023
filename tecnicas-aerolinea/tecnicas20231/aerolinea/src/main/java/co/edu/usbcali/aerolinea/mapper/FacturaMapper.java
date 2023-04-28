@@ -11,8 +11,8 @@ public class FacturaMapper {
     public static FacturaDTO modelToDTO(Factura factura) {
         return FacturaDTO.builder()
                 .idFactura(factura.getIdFactura())
-
-                .fecha(factura.getFecha())
+                .idUsuario(factura.getUsuario() != null ? factura.getUsuario().getUsuaId() : null)
+                .idReserva(factura.getReserva() != null ? factura.getReserva().getIdReserva() : null)
                 .estado(factura.getEstado())
                 .build();
     }
@@ -24,7 +24,6 @@ public class FacturaMapper {
     public static Factura dtoToModel(FacturaDTO facturaDTO) {
         return Factura.builder()
                 .idFactura(facturaDTO.getIdFactura())
-                .fecha(facturaDTO.getFecha())
                 .estado(facturaDTO.getEstado())
                 .build();
     }
