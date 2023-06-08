@@ -17,6 +17,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/aeropuerto")
 @Slf4j
+@CrossOrigin(origins = "*", methods= { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT })
+
 public class AeropuertoController {
 
     private AeropuertoService aeropuertoService;

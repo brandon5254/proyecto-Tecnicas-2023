@@ -14,6 +14,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/tipoasiento")
 @Slf4j
+@CrossOrigin(origins = "*", methods= { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT })
+
 public class TipoAsientoController {
     private final TipoAsientoServiceImpl tipoAsientoService;
 

@@ -21,10 +21,10 @@ public class AeropuertoServiceImpl implements AeropuertoService {
     }
     @Override
     public AeropuertoDTO obtenerAeropuerto(Integer id) throws Exception {
-        if (aeropuertoRepository.findById(Long.valueOf(id)).isEmpty()) {
+        if (!aeropuertoRepository.existsById((id))) {
             throw new Exception("El id " + id + " no corresponde a ningun aeropuerto!");
         }
-        return AeropuertoMapper.modelToDto(aeropuertoRepository.findById(Long.valueOf(id)).get());
+        return AeropuertoMapper.modelToDto(aeropuertoRepository.getReferenceById((id)));
     }
     @Override
     public List<AeropuertoDTO> obtenerAeropuertos() {
@@ -47,9 +47,7 @@ public class AeropuertoServiceImpl implements AeropuertoService {
         if (aeropuertoDTO.getEstado() == null || aeropuertoDTO.getEstado().isBlank() || aeropuertoDTO.getEstado().trim().isEmpty()) {
             throw new Exception("El estado es invalido!");
         }
-        if(aeropuertoRepository.findById(Long.valueOf(aeropuertoDTO.getAero_id())).isPresent()){
-            throw new Exception("Ya existe el id del aeropuerto!");
-        }
+
         Aeropuerto aeropuerto = AeropuertoMapper.dtoToModel(aeropuertoDTO);
         return AeropuertoMapper.modelToDto(aeropuertoRepository.save(aeropuerto));
     }

@@ -12,6 +12,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/vuelo")
+@CrossOrigin(origins = "*", methods= { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT })
+
 public class VueloController {
 
 

@@ -14,6 +14,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/trayecto")
 @Slf4j
+@CrossOrigin(origins = "*", methods= { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT })
+
 public class TrayectoController {
     private final TrayectoService trayectoService;
     public TrayectoController(TrayectoService trayectoService) {

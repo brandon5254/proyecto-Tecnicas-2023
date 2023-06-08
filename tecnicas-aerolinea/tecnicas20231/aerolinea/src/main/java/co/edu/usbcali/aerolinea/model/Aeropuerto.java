@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Entity
+
 @Table(name = "aeropuerto")
 public class Aeropuerto {
     private static final long serialVersionUID = 1L;
