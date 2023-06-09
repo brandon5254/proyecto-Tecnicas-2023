@@ -13,4 +13,18 @@ public class TipoAsientoDTO {
     private Integer idTipoAsiento;
     private String descripcion;
     private String estado;
-}
+
+    public TipoAsientoDTO() {
+
+    }
+       private String nombre;
+
+        public TipoAsientoDTO(String nombre) {
+            this.nombre = nombre;
+        }
+
+        public String getNombre() {
+            return nombre;
+        }
+    }
+

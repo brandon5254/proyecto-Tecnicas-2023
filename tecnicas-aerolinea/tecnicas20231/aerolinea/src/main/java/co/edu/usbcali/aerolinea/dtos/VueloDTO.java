@@ -25,4 +25,7 @@ public class VueloDTO {
     private String estado;
     private Avion avion;
 
+    public VueloDTO() {
+
+    }
 }

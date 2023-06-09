@@ -18,4 +18,8 @@ public class ReservaDTO {
 
     public ReservaDTO(int idReserva, String s) {
     }
+
+    public ReservaDTO() {
+
+    }
 }

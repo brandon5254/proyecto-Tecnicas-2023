@@ -17,4 +17,8 @@ public class FacturaDTO {
 
     private Integer idReserva;
     private String estado;
+
+    public FacturaDTO() {
+
+    }
 }

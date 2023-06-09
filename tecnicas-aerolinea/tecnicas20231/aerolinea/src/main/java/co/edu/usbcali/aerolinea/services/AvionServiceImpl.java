@@ -46,6 +46,7 @@ public class AvionServiceImpl implements AvionService{
             throw new Exception(" ingrese  el Modelo del avion");
         }
 
+
         if (avionDTO.getEstado() == null || avionDTO.getEstado().isBlank() || avionDTO.getEstado().trim().isEmpty()) {
         throw new Exception("El estado no es valido!");
     }

@@ -15,4 +15,12 @@ public class TrayectoDTO {
     private Integer idAeropuertoOrigen;
     private Integer idVuelo;
     private String estado;
+
+    public TrayectoDTO() {
+
+    }
+
+    public String getMensaje() {
+        return null;
+    }
 }

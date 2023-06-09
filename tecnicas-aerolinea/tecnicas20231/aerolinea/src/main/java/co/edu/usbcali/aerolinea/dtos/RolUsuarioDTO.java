@@ -14,4 +14,7 @@ public class RolUsuarioDTO {
     private String descripcion;
     private String  estado;
 
+    public RolUsuarioDTO() {
+
+    }
 }

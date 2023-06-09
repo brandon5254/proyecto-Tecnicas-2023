@@ -18,4 +18,8 @@ public class UsuarioDTO {
     private String apellido;
     private String correo;
     private String estado;
+
+    public UsuarioDTO() {
+
+    }
 }
