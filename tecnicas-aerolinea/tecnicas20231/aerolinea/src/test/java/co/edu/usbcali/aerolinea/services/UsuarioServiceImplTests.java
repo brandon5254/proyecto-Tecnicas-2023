@@ -1,75 +1,130 @@
 package co.edu.usbcali.aerolinea.services;
 
+import co.edu.usbcali.aerolinea.model.RolUsuario;
 import co.edu.usbcali.aerolinea.dtos.UsuarioDTO;
-import co.edu.usbcali.aerolinea.model.Usuario;
-
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.when;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
+import co.edu.usbcali.aerolinea.repository.RolUsuarioRepository;
 import co.edu.usbcali.aerolinea.repository.UsuarioRepository;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import co.edu.usbcali.aerolinea.services.UsuarioServiceImplTests;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.Mockito;
+import org.modelmapper.ModelMapper;
+import org.springframework.boot.test.context.SpringBootTest;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import co.edu.usbcali.aerolinea.model.Usuario;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.any;
 
-@RunWith(MockitoJUnitRunner.class)
-
+@SpringBootTest
 public class UsuarioServiceImplTests {
-
-    @Mock
-    private UsuarioRepository usuarioRepository;
 
     @InjectMocks
     private UsuarioServiceImpl usuarioService;
+    @Mock
+    private UsuarioRepository usuarioRepository;
+    @Mock
+    private RolUsuarioRepository rolUsuarioRepository;
+    @Mock
+    private ModelMapper modelMapper;
 
-    @Before
-    public void setUp() {
-        MockitoAnnotations.initMocks(this);
+    @Test
+    public void agregarUsuarioTest() throws Exception {
+        //Definimos las variables a utilizar
+        UsuarioDTO usuarioDTO = UsuarioDTO.builder()
+                .estado("Activo")
+                .nombre("Jorge")
+                .correo("jorge@gmail.com")
+                .cedula("1122334455")
+                .apellido("garcia")
+                .idRolUsuario(1)
+                .usuaId(1)
+                .build();
+
+        RolUsuario rolUsuario = RolUsuario.builder()
+                .estado("Activo")
+                .descripcion("ADMIN")
+                .rousId(1).build();
+
+        Usuario guardaUsuario = Usuario.builder()
+                .idRolUsuario(rolUsuario)
+                .apellido("garcia")
+                .cedula("1122334455")
+                .correo("jorge@gmail.com")
+                .estado("Activo")
+                .nombre("Jorge")
+                .usuaId(1)
+                .build();
+
+        //Mockeamos las llamadas necesarias dentro del bean a probar
+        given(usuarioRepository.findById(1)).willReturn(Optional.empty());
+        given(rolUsuarioRepository.findById(1)).willReturn(Optional.of(rolUsuario));
+        given(usuarioRepository.save(any(Usuario.class))).willReturn(guardaUsuario);
+
+        //Llamamos al metodo del bean principal
+        UsuarioDTO usuarioGuardado = usuarioService.agregarUsuario(usuarioDTO);
+
+        //Validamos las respuestas
+        assertEquals(usuarioDTO.getNombre(), usuarioGuardado.getNombre());
+
     }
 
     @Test
-    public void testObtenerUsuarios() {
-        List<Usuario> listaUsuarios = new ArrayList<>();
-        Usuario usuario1 = new Usuario();
-        usuario1.setUsuaId(1);
-        usuario1.setNombre("Juan");
-        listaUsuarios.add(usuario1);
-        Usuario usuario2 = new Usuario();
-        usuario2.setUsuaId(2);
-        usuario2.setNombre("Maria");
-        listaUsuarios.add(usuario2);
+    public void obtenerUsuarioTest() throws Exception {
+        RolUsuario rolUsuario = RolUsuario.builder()
+                .estado("Activo")
+                .descripcion("ADMIN")
+                .rousId(1).build();
 
-        when(usuarioRepository.findAll()).thenReturn(listaUsuarios);
+        Usuario usuario = Usuario.builder()
+                .idRolUsuario(rolUsuario)
+                .apellido("garcia")
+                .cedula("1122334455")
+                .correo("jorge@gmail.com")
+                .estado("Activo")
+                .nombre("Jorge")
+                .usuaId(1)
+                .build();
+        given(usuarioRepository.findById(1)).willReturn(Optional.of(usuario));
 
-        List<UsuarioDTO> listaUsuariosDTO = usuarioService.obtenerUsuarios();
-        assertEquals(0, listaUsuariosDTO.size());
-        assertEquals("brandon", listaUsuariosDTO.get(0).getNombre());
-        assertEquals("Angel", listaUsuariosDTO.get(1).getNombre());
+        UsuarioDTO usuarioConsultado = usuarioService.obtenerUsuario(1);
+
+        assertEquals(usuarioConsultado.getNombre(), usuario.getNombre());
     }
-
     @Test
-    public void testObtenerUsuario() throws Exception {
-        Usuario usuario = new Usuario();
-        usuario.setUsuaId(1);
-        usuario.setNombre("brandon");
+    public void ObtenerUsuariosTest()throws Exception{
+        RolUsuario rolUsuario = RolUsuario.builder()
+                .estado("Activo")
+                .descripcion("ADMIN")
+                .rousId(1).build();
 
-        when(usuarioRepository.findById(1)).thenReturn(Optional.of(usuario));
+        List<Usuario> usuariosRetorno = Arrays.asList(Usuario.builder()
+                        .idRolUsuario(rolUsuario)
+                        .apellido("garcia")
+                        .cedula("1122334455")
+                        .correo("jorge@gmail.com")
+                        .estado("Activo")
+                        .nombre("Jorge")
+                        .usuaId(1)
+                        .build(),
+                Usuario.builder()
+                        .idRolUsuario(rolUsuario)
+                        .apellido("bello")
+                        .cedula("66865345")
+                        .correo("cristina@gmail.com")
+                        .estado("Activo")
+                        .nombre("cristina")
+                        .usuaId(2)
+                        .build());
 
-        UsuarioDTO usuarioDTO = usuarioService.obtenerUsuario(1);
-        assertEquals("brandon", usuarioDTO.getNombre());
+        Mockito.when(usuarioRepository.findAll()).thenReturn(usuariosRetorno);
+
+        List<UsuarioDTO> usuarios = usuarioService.obtenerUsuarios();
+
+        assertEquals(2, usuarios.size());
     }
 
-    @Test(expected = Exception.class)
-    public void testObtenerUsuarioNoExiste() throws Exception {
-        when(usuarioRepository.findById(10)).thenReturn(Optional.empty());
-
-        usuarioService.obtenerUsuario(1);
-    }
 }

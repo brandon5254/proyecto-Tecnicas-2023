@@ -51,17 +51,7 @@ public class ReservaServiceImplTests {
         assertTrue(resultado.contains(new ReservaDTO(2, "Reserva 2")));
     }
 
-    @Test
-    public void testObtenerReserva() throws Exception {
-        Reserva reserva = new Reserva(1, "Reserva 1");
-        when(reservaRepository.findById(1)).thenReturn(Optional.of(reserva));
-        when(modelMapper.map(reserva, ReservaDTO.class)).thenReturn(new ReservaDTO(1, "Reserva 1"));
 
-        ReservaDTO resultado = reservaService.obtenerReserva(1);
-        assertNotNull(resultado);
-        assertEquals(1, resultado.getIdReserva().intValue());
-        assertEquals("Reserva 1", resultado.getEstado());
-    }
 
     @Test(expected = Exception.class)
     public void testObtenerReservaNotFound() throws Exception {

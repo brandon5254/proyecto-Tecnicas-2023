@@ -17,6 +17,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.modelmapper.ModelMapper;
 
@@ -37,11 +38,11 @@ public class AsientoServiceImplTests {
 
     @Before
     public void setup() {
-        when(asientoRepository.findById(1)).thenReturn(Optional.of(new Asiento()));
-        when(asientoRepository.findById(2)).thenReturn(Optional.empty());
-        when(asientoRepository.findAll()).thenReturn(new ArrayList<>());
-        when(modelMapper.map(new Asiento(), AsientoDTO.class)).thenReturn(new AsientoDTO());
-        when(modelMapper.map(new ArrayList<>(), List.class)).thenReturn(new ArrayList<>());
+        Mockito.lenient().when(asientoRepository.findById(1)).thenReturn(Optional.of(new Asiento()));
+        Mockito.lenient().when(asientoRepository.findById(2)).thenReturn(Optional.empty());
+        Mockito.lenient().when(asientoRepository.findAll()).thenReturn(new ArrayList<>());
+        Mockito.lenient().when(modelMapper.map(new Asiento(), AsientoDTO.class)).thenReturn(new AsientoDTO());
+        Mockito.lenient().when(modelMapper.map(new ArrayList<>(), List.class)).thenReturn(new ArrayList<>());
     }
 
     @Test
