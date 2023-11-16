@@ -11,6 +11,7 @@
 	<groupId>co.edu.usbcali</groupId>
 	<artifactId>aerolinea</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 	<name>aerolinea</name>
 	<description>Proyecto de aerolinea Colombiana</description>
 	<properties>
@@ -75,6 +76,13 @@
 			<artifactId>junit</artifactId>
 		</dependency>
 
+        
+
+
+
+
+
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -108,6 +116,18 @@
 					</excludes>
 				</configuration>
 			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.3.1</version>
+				<configuration>
+					<outputDirectory>C:\Preproduccion</outputDirectory>
+				</configuration>
+
+			</plugin>
+
+
 		</plugins>
 	</build>
 
